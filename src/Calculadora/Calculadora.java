@@ -1,12 +1,15 @@
 package Calculadora;
 
 import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.RoundRectangle2D;
 
 public class Calculadora implements ActionListener{
 
-    JFrame frame;
+    JFrame frame2;
     JTextField espacioTexto;
     JButton[] botonesDeNumeros = new JButton[10];
     JButton[] botonesDeFunciones = new JButton[9];
@@ -18,18 +21,21 @@ public class Calculadora implements ActionListener{
 
     double valor1=0, valor2=0, resultado=0;
     char operador;
+
     Calculadora() {
 
-        frame = new JFrame("Calculadora");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(420, 550);
-        frame.setLayout(null);
-        frame.setResizable(false); // Para que el tamaño de la ventana no se pueda ajustar
+        frame2 = new JFrame("Calculadora");
+        frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame2.setSize(420, 550);
+        frame2.setLayout(null);
+        frame2.setResizable(false); // Para que el tamaño de la ventana no se pueda ajustar
 
         espacioTexto = new JTextField();
         espacioTexto.setBounds(50, 25, 300, 40);
         espacioTexto.setFont(miFuente);
         espacioTexto.setEditable(false);
+        espacioTexto.setBorder(new LineBorder(Color.BLUE));
+
 
         botonSuma = new JButton("+");
         botonResta = new JButton("-");
@@ -55,6 +61,8 @@ public class Calculadora implements ActionListener{
             botonesDeFunciones[i].addActionListener(this);
             botonesDeFunciones[i].setFont(miFuente);
             botonesDeFunciones[i].setFocusable(false);
+            botonesDeFunciones[i].setContentAreaFilled(false);
+            botonesDeFunciones[i].setBorder(new LineBorder(Color.RED));
         }
 
         for (int i = 0; i < 10; i++) {
@@ -62,6 +70,8 @@ public class Calculadora implements ActionListener{
             botonesDeNumeros[i].addActionListener(this);
             botonesDeNumeros[i].setFont(miFuente);
             botonesDeNumeros[i].setFocusable(false);
+            botonesDeNumeros[i].setContentAreaFilled(false);
+            botonesDeNumeros[i].setBorder(new LineBorder(Color.GREEN));
         }
 
         // Estableciendo límites
@@ -93,14 +103,14 @@ public class Calculadora implements ActionListener{
         panel.add(botonDividir);
 
         // Añado el espacio de texto, el panel y los demás botones que están fuera del panel a la calculadora
-        frame.add(espacioTexto);
-        frame.add(panel);
-        frame.add(botonNegativo);
-        frame.add(botonBorrar);
-        frame.add(botonLimpiar);
+        frame2.add(espacioTexto);
+        frame2.add(panel);
+        frame2.add(botonNegativo);
+        frame2.add(botonBorrar);
+        frame2.add(botonLimpiar);
 
         // Para que se vea la calculadora
-        frame.setVisible(true);
+        frame2.setVisible(true);
     }
 
     public static void main(String[] args) {
